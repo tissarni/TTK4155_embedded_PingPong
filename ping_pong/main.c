@@ -7,17 +7,19 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include "UART.h"
 
 int main(void)
 {
-        DDRB = 0b11111111;  //set PORTB as output
+    DDRB = 0b11111111;  //set PORTB as output
+	UART_Init();
         
     /* Replace with your application code */
     while (1)
     {
-                PORTB = 0b00000010;
-                _delay_ms(1000);
-                PORTB = 0b00000000;
-                _delay_ms(1000);
+		PORTB = 0b00000010;
+		_delay_ms(1000);
+		PORTB = 0b00000000;
+		_delay_ms(1000);
     }
 }
