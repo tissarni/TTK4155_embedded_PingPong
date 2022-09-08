@@ -7,7 +7,28 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <stdio.h>
 #include "UART.h"
+
+void test_blinking()
+{
+	PORTB = 0b00000010;
+	_delay_ms(1000);
+	PORTB = 0b00000000;
+	_delay_ms(1000);
+	
+}
+
+void test_transmit()
+{
+	UART_Transmit('c');
+	_delay_ms(1000);
+}
+
+
+
+
+
 
 int main(void)
 {
@@ -17,9 +38,9 @@ int main(void)
     /* Replace with your application code */
     while (1)
     {
-		PORTB = 0b00000010;
-		_delay_ms(1000);
-		PORTB = 0b00000000;
-		_delay_ms(1000);
+		//printf("\nHeLLO\n");
+		test_transmit();
+		
     }
 }
+
