@@ -4,11 +4,15 @@
  * Created: 05.09.2022 13:08:20
  * Author : floriaca
  */
+#define F_CPU 4915200
 
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdio.h>
 #include "UART.h"
+
+
+
 
 void test_blinking()
 {
@@ -25,7 +29,11 @@ void test_transmit()
 	_delay_ms(1000);
 }
 
-
+void test_Receive()
+{
+	unsigned char toto = UART_Receive();
+	_delay_ms(1000);
+}
 
 
 
@@ -35,12 +43,11 @@ int main(void)
     DDRB = 0b11111111;  //set PORTB as output
 	UART_Init();
         
-    /* Replace with your application code */
+    /* Replace with your application code*/
     while (1)
     {
 		//printf("\nHeLLO\n");
 		test_transmit();
-		
     }
 }
 
