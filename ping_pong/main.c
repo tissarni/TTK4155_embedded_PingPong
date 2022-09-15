@@ -9,56 +9,28 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdio.h>
+
 #include "UART.h"
+#include "tests.h"
 
 #define FOSC 4915200// Clock Speed
 #define BAUD 9600
 #define MYUBRR FOSC/16/BAUD-1
 
-
-
-
-void test_blinking()
-{
-	PORTB = 0b00000010;
-	_delay_ms(1000);
-	PORTB = 0b00000000;
-	_delay_ms(1000);
-	
-}
-
-void test_transmit()
-{
-	UART_Transmit('c');
-	_delay_ms(1000);
-}
-
-void test_Receive()
-{
-	UART_Receive();
-	_delay_ms(1000);
-}
-
-void test_printf() 
-{
-	printf("Finally\n\r");
-}
-
-
-
-
 int main(void)
 {
-    //DDRB = 0b11111111;  //set PORTB as output
+	//Drivers init
 	UART_Init(MYUBRR);
 	
+	//Ports setting 
+	DDRE = 0b11111111;
+    DDRA = 0b11111111;  
+	PORTE = 0b00000010;
+	SRAM_test();
 	        
-    /* Replace with your application code*/
+    
     while (1)
     {
-		
-
-		
 		
     }
 }

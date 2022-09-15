@@ -6,17 +6,15 @@
  */ 
 
 #include <avr/io.h>
-//#include <stdio.h>
+
 #include "UART.h"
-
-
-
 
 void UART_Init(unsigned int my_ubrr)
 {
 	/* Set baud rate */
 	UBRR0H = (unsigned char)(my_ubrr >> 8);
 	UBRR0L = (unsigned char)my_ubrr;
+	
 	/* Enable receiver and transmitter */
 	UCSR0B = (1 << RXEN0) | (1 << TXEN0);
 	
@@ -29,17 +27,17 @@ void UART_Init(unsigned int my_ubrr)
 void UART_Transmit( unsigned char data )
 {
 	/* Wait for empty transmit buffer */
-	while ( !( UCSR0A & (1<<UDRE0)) );
+	while ( !( UCSR0A & (1 << UDRE0)) );
 	
 	/* Put data into buffer, sends the data */
 	UDR0 = data;
 }
 
-
 unsigned char UART_Receive( void )
 {
 	/* Wait for data to be received */
-	while ( !(UCSR0A & (1<<RXC0)) );
+	while ( !(UCSR0A & (1 << RXC0)) );
+	
 	/* Get and return received data from buffer */
 	return UDR0;
 }

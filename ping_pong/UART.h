@@ -13,7 +13,4 @@ void UART_Init(unsigned int my_ubrr);
 void UART_Transmit( unsigned char data );
 unsigned char UART_Receive( void );
 
-
-
-
 #endif /* UART_H_ */
