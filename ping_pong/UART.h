@@ -9,7 +9,7 @@
 #ifndef UART_H_
 #define UART_H_
 
-void UART_Init();
+void UART_Init(unsigned int my_ubrr);
 void UART_Transmit( unsigned char data );
 unsigned char UART_Receive( void );
 

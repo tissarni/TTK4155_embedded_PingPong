@@ -11,6 +11,10 @@
 #include <stdio.h>
 #include "UART.h"
 
+#define FOSC 4915200// Clock Speed
+#define BAUD 9600
+#define MYUBRR FOSC/16/BAUD-1
+
 
 
 
@@ -31,8 +35,13 @@ void test_transmit()
 
 void test_Receive()
 {
-	unsigned char toto = UART_Receive();
+	UART_Receive();
 	_delay_ms(1000);
+}
+
+void test_printf() 
+{
+	printf("Finally\n\r");
 }
 
 
@@ -40,14 +49,17 @@ void test_Receive()
 
 int main(void)
 {
-    DDRB = 0b11111111;  //set PORTB as output
-	UART_Init();
-        
+    //DDRB = 0b11111111;  //set PORTB as output
+	UART_Init(MYUBRR);
+	
+	        
     /* Replace with your application code*/
     while (1)
     {
-		//printf("\nHeLLO\n");
-		test_transmit();
+		
+
+		
+		
     }
 }
 
