@@ -5,5 +5,12 @@
  *  Author: titouani
  */ 
 
+#include <avr/io.h>
+
+
+void SRAM_Init()
+{
+	MCUCR = (1 << SRE);
+}
 
 

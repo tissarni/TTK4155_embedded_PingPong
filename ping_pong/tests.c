@@ -77,3 +77,22 @@ void SRAM_test(void)
 	}
 	printf("SRAM test completed with \n%4d errors in write phase and \n%4d errors in retrieval phase\n\n", write_errors, retrieval_errors);
 }
+
+void SRAM_mapping_test()
+{	
+	volatile char *ext_ram = (char *) 0x1000; // Start address for the SRAM
+	
+	
+	//SRAM_test();
+	while(1) {
+		
+		ext_ram[0x0000] = "C";
+		printf("\n ADC \n\r");
+		_delay_ms(50000);
+		
+		/*ext_ram[0x1800] = "C";
+		printf("\n SRAM \n\r");
+		_delay_ms(50000);
+*/
+	}
+}

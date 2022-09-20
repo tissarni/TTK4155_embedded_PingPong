@@ -9,5 +9,8 @@
 #ifndef SRAM_H_
 #define SRAM_H_
 
+void SRAM_Init();
+void SRAM_mapping_test();
+
 
 #endif /* SRAM_H_ */

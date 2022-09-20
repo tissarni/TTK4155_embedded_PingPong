@@ -11,6 +11,7 @@
 #include <stdio.h>
 
 #include "UART.h"
+#include "SRAM.h"
 #include "tests.h"
 
 #define FOSC 4915200// Clock Speed
@@ -21,17 +22,24 @@ int main(void)
 {
 	//Drivers init
 	UART_Init(MYUBRR);
+	SRAM_Init();
 	
 	//Ports setting 
 	DDRE = 0b11111111;
     DDRA = 0b11111111;  
 	PORTE = 0b00000010;
-	SRAM_test();
+	PORTA = 0b00000000;
+	//PORTC =0b00000000;
+	
+	
+	
+	SRAM_mapping_test();
+
 	        
     
-    while (1)
+    /*while (1)
     {
 		
-    }
+    }*/
 }
 
