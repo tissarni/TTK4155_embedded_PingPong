@@ -6,11 +6,12 @@
  */ 
 
 #include <avr/io.h>
+#include "SRAM.h"
 
 
 void SRAM_Init()
 {
-	MCUCR = (1 << SRE);
+	MCUCR |= (1 << SRE);
 }
 
 

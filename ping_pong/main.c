@@ -27,14 +27,15 @@ int main(void)
 	//Ports setting 
 	DDRE = 0b11111111;
     DDRA = 0b11111111;  
+	//DDRC = DDRC | 0b00001111;
 	PORTE = 0b00000010;
 	PORTA = 0b00000000;
 	//PORTC =0b00000000;
 	
 	
 	
-	SRAM_mapping_test();
-
+	//SRAM_test();
+ 	SRAM_mapping_test();
 	        
     
     /*while (1)

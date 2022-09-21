@@ -86,13 +86,13 @@ void SRAM_mapping_test()
 	//SRAM_test();
 	while(1) {
 		
-		ext_ram[0x0000] = "C";
+		ext_ram[0x1400] = "C";
 		printf("\n ADC \n\r");
-		_delay_ms(50000);
+		_delay_ms(3000);
 		
 		/*ext_ram[0x1800] = "C";
 		printf("\n SRAM \n\r");
-		_delay_ms(50000);
-*/
+		_delay_ms(3000);*/
+
 	}
 }
