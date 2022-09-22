@@ -35,7 +35,7 @@ int main(void)
 	
 	
 	//SRAM_test();
- 	SRAM_mapping_test();
+	SRAM_mapping_test();
 	        
     
     /*while (1)

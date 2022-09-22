@@ -10,7 +10,8 @@
 #define SRAM_H_
 
 void SRAM_Init();
-void SRAM_mapping_test();
+void xmem_write ( uint8_t data , uint16_t addr );
+uint8_t xmem_read ( uint16_t addr );
 
 
 #endif /* SRAM_H_ */

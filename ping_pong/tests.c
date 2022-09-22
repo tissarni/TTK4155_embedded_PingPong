@@ -80,19 +80,15 @@ void SRAM_test(void)
 
 void SRAM_mapping_test()
 {	
-	volatile char *ext_ram = (char *) 0x1000; // Start address for the SRAM
-	
-	
 	//SRAM_test();
 	while(1) {
 		
-		ext_ram[0x1400] = "C";
+		xmem_write("c", 0x0400);
 		printf("\n ADC \n\r");
-		_delay_ms(3000);
+		_delay_ms(1000);
 		
-		/*ext_ram[0x1800] = "C";
+		/*xmem_write("c", 0x0800);
 		printf("\n SRAM \n\r");
-		_delay_ms(3000);*/
-
+		_delay_ms(500);*/
 	}
 }
