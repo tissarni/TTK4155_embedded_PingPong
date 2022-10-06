@@ -9,8 +9,6 @@
 #ifndef JOYSTICK_H_
 #define JOYSTICK_H_
 
-
-
 typedef struct  
 {
 	int x;
@@ -22,7 +20,5 @@ joystick_pos joystick_calibrate();
 typedef enum {UP, DOWN, LEFT, RIGHT, NEUTRAL} joystick_dir;
 joystick_dir get_joystick_dir();
 joystick_pos get_joystick_pos();
-
-
 
 #endif /* JOYSTICK_H_ */

@@ -37,27 +37,13 @@ int Right_Button(){
 }
 
 int Left_Slider(){
-	
-	
-	//printf("Left slider : %d \r\n", left_slider );
-	
-	
 	return ADC_Read(2);
 }
 
 int Right_Slider(){
-	
 	return ADC_Read(3);
 	
 }
 
-/*
-void PWM_Signal(){ // PD5
-	ASSR = (1 << AS2);
-	(1 << OC1A);
-	//OC3A
-
-}
-*/
 
  

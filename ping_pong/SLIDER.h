@@ -14,8 +14,4 @@ int Left_Button();
 int Right_Slider();
 int Left_Slider();
 
-
-
-
-
 #endif /* SLIDER_H_ */

@@ -16,6 +16,7 @@
 #include "SLIDER.h"
 #include "ADC.h"
 #include "JOYSTICK.h"
+#include "OLED.h"
 
 
 #define FOSC 4915200// Clock Speed
@@ -31,6 +32,8 @@ int main(void)
 	SRAM_Init();
 	ADC_Init();
 	joystick_calibrate();
+	OLED_init();
+	
 	
 	
 	//Ports setting 

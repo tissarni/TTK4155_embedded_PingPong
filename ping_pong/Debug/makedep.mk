@@ -8,6 +8,8 @@ JOYSTICK.c
 
 main.c
 
+OLED.c
+
 SLIDER.c
 
 SRAM.c
