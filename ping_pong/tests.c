@@ -12,6 +12,8 @@
 #include <stdio.h>
 
 #include "tests.h"
+#include "JOYSTICK.h"
+#include "SLIDER.h"
 
 void test_blinking()
 {
@@ -91,4 +93,19 @@ void SRAM_mapping_test()
 		printf("\n SRAM \n\r");
 		_delay_ms(500);*/
 	}
+}
+
+void USB_multi_test() {
+	
+	
+	
+	while(1) {
+		joystick_pos pos = get_joystick_pos();
+		printf("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\r\n");
+		printf("Left button : %d   Right button : %d  \n\rLeft slider : %d   Right slider : %d  \n\rJoystick pos : X =  %d Y = %d\r\n", Left_Button(), Right_Button(), ADC_Read(2), ADC_Read(3), pos.x, pos.y);
+		printf("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\r\n");
+
+		_delay_ms(15000);
+	}
+	
 }

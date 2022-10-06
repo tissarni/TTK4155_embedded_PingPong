@@ -27,17 +27,16 @@ void ADC_Init() {
 	
 }
 
-void ADC_Read (int channel) {
+int ADC_Read (int channel) {
 	//Pulse on WR
-	printf(" Debut Function\n\r");
+	
 
 	volatile char * ext_mem = ( char *) 0x0000 ;
 	ext_mem [ 0x1400 ]= 1;
 	int Tconv = (9*4*2)/4912000;
 	_delay_ms(Tconv);
-	printf(" Attente Tconv\n\r");
 
-	uint8_t  value=0;
+	int  value=0;
 	
 	//Pulses on RD
 	for (int i=0;i<4;i++){
@@ -47,5 +46,5 @@ void ADC_Read (int channel) {
 			 value = read;
 		}
 	}
-	printf("%d \n\r", value);
+	return value;
 }

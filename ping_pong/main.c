@@ -15,6 +15,7 @@
 #include "tests.h"
 #include "SLIDER.h"
 #include "ADC.h"
+#include "JOYSTICK.h"
 
 
 #define FOSC 4915200// Clock Speed
@@ -29,6 +30,9 @@ int main(void)
 	UART_Init(MYUBRR);
 	SRAM_Init();
 	ADC_Init();
+	joystick_calibrate();
+	
+	
 	//Ports setting 
 	DDRE = 0b11111111;
     //DDRA = 0b11111111; 
@@ -39,6 +43,7 @@ int main(void)
 	//PORTB = (0<<PB1)|(0<<PB0);	//PORTD = (1<<PD6)|(1<<PD7);
 	//PORTC =0b00000000;
 	
+	USB_multi_test();
 
 	
 	//SRAM_test();
@@ -46,11 +51,9 @@ int main(void)
   
     while (1)
     {
-	//Left_Button();
-	//Right_Button();
-
-	_delay_ms(10);
-	 ADC_Read (1);
+	//get_joystick_pos();
+	
+	_delay_ms(100);
 	
     }
 }

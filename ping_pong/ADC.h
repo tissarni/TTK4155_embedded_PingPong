@@ -10,7 +10,7 @@
 #define ADC_H_
 
 void ADC_Write ();
-void ADC_Read ();
+int ADC_Read ();
 void ADC_Init();
 
 

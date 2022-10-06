@@ -18,7 +18,7 @@ int Left_Button(){
 	int x = 0;
 	if ((PINB & 0b01000000) == 0b01000000){
 		x = 1;
-		printf("Left button");
+		printf("Left button \r\n");
 	}
 	
 	//printf("%d ", x);
@@ -30,33 +30,25 @@ int Right_Button(){
 	int x = 0;
 	if ((PINB & 0b10000000) == 0b10000000){
 		x=1;
-		printf("Right button");
+		printf("Right button \r\n");
 	}
 	return x;
 	//B6 B7
 }
 
 int Left_Slider(){
-	// PORTB5
-	int x = 0;
-	if ((PINB & 0b00100000) == 0b00100000){
-		x = 1;
-		printf("Left slider");
-	}
 	
-	//printf("%d ", x);
-	return x;
+	
+	//printf("Left slider : %d \r\n", left_slider );
+	
+	
+	return ADC_Read(2);
 }
 
 int Right_Slider(){
-	// PORTB4
-	int x = 0;
-	if ((PINB & 0b00010000) == 0b00010000){
-		x=1;
-		printf("Right slider");
-	}
-	return x;
-	//B6 B7
+	
+	return ADC_Read(3);
+	
 }
 
 /*
