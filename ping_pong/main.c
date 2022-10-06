@@ -13,6 +13,9 @@
 #include "UART.h"
 #include "SRAM.h"
 #include "tests.h"
+#include "SLIDER.h"
+#include "ADC.h"
+
 
 #define FOSC 4915200// Clock Speed
 #define BAUD 9600
@@ -20,27 +23,35 @@
 
 int main(void)
 {
+			
+
 	//Drivers init
 	UART_Init(MYUBRR);
 	SRAM_Init();
-	
+	ADC_Init();
 	//Ports setting 
 	DDRE = 0b11111111;
-    DDRA = 0b11111111;  
+    //DDRA = 0b11111111; 
+	//DDRD |= 0b11000000;
 	//DDRC = DDRC | 0b00001111;
 	PORTE = 0b00000010;
-	PORTA = 0b00000000;
+	//PORTA = 0b00000000;
+	//PORTB = (0<<PB1)|(0<<PB0);	//PORTD = (1<<PD6)|(1<<PD7);
 	//PORTC =0b00000000;
 	
-	
+
 	
 	//SRAM_test();
-	SRAM_mapping_test();
-	        
-    
-    /*while (1)
+	//SRAM_mapping_test();
+  
+    while (1)
     {
-		
-    }*/
+	//Left_Button();
+	//Right_Button();
+
+	_delay_ms(10);
+	 ADC_Read (1);
+	
+    }
 }
 

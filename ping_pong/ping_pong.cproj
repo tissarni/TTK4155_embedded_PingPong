@@ -156,7 +156,25 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ADC.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ADC.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="JOYSTICK.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="JOYSTICK.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SLIDER.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SLIDER.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SRAM.c">

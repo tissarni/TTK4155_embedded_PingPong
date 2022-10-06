@@ -9,8 +9,9 @@
 #ifndef ADC_H_
 #define ADC_H_
 
-
-
+void ADC_Write ();
+void ADC_Read ();
+void ADC_Init();
 
 
 #endif /* ADC_H_ */

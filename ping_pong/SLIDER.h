@@ -9,6 +9,11 @@
 #ifndef SLIDER_H_
 #define SLIDER_H_
 
+int Right_Button();
+int Left_Button();
+int Right_Slider();
+int Left_Slider();
+
 
 
 
