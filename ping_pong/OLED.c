@@ -6,8 +6,11 @@
  */ 
 
 #include <stdio.h>
+#include <util/delay.h>
 #include "SRAM.h"
+#include "OLED.h"
 
+volatile oled_pos current_pos;
 
 
 void OLED_init()
@@ -33,7 +36,28 @@ void OLED_init()
 	oled_write_c(0x00);
 	oled_write_c(0xa4); //out follows RAM content
 	oled_write_c(0xa6); //set normal display
+	
 	oled_write_c(0xaf); // display on
+	
+	OLED_reset();
+	
+	OLED_set_page(0x04);
+	OLED_set_column(0x00);
+	oled_write_d(0xff);
+	OLED_go_to_page();
+	oled_write_d(0xff);
+	oled_write_d(0xff);
+	oled_write_d(0xff);
+	oled_write_d(0xff);
+	oled_write_d(0xff);
+	oled_write_d(0xff);
+	oled_write_d(0xff);
+	
+	
+	_delay_ms(1000);
+	OLED_reset();
+	
+
 }
 
 void oled_write_c(uint8_t command) {
@@ -42,5 +66,62 @@ void oled_write_c(uint8_t command) {
 
 
 void oled_write_d(uint8_t data) {
+	OLED_set_page(current_pos.page);
 	xmem_write(data, 0x0200);
 }
+
+
+void OLED_reset() {
+	OLED_set_page(0x00);
+	
+	for (int page = 0; page < 8; page++) {
+		OLED_clear_page(page);
+		OLED_go_to_page();
+	}
+	
+}
+	
+void OLED_home(){}
+	
+void OLED_go_to_page() {
+	uint8_t next_page = current_pos.page + 0x01;
+	OLED_set_page(next_page);
+	OLED_set_column(0x00);	
+}
+	
+void OLED_clear_page(int page){
+	OLED_set_column(0x00);	
+	for (int column = 0; column < 128; column++) {
+		oled_write_d(0x00);
+	}
+	OLED_set_column(0x00);	
+}
+	
+
+
+void OLED_set_page(uint8_t page) {
+	uint8_t mask = 0xB0;
+	uint8_t command = mask | page;
+	current_pos.page = page;
+	oled_write_c(command);
+}
+
+void OLED_set_column(uint8_t column) {
+	current_pos.column = column;
+	uint8_t mask_lsb = 0x0F;
+	uint8_t command = mask_lsb & column;
+	oled_write_c(command);
+	uint8_t mask_msb = 0xF0;
+	command = mask_msb & column;
+	for(int i=0;i<4;i++){
+		command = command >> 1;
+	}
+	command = 0x10 | command;
+	oled_write_c(command);
+}
+	
+void OLED_write_data(volatile c) {}
+	
+void OLED_print(char* c){}
+	
+void OLED_set_brightness(int level){}

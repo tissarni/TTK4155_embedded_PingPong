@@ -46,18 +46,18 @@ int main(void)
 	//PORTB = (0<<PB1)|(0<<PB0);	//PORTD = (1<<PD6)|(1<<PD7);
 	//PORTC =0b00000000;
 	
-	USB_multi_test();
+	//USB_multi_test();
 
 	
 	//SRAM_test();
 	//SRAM_mapping_test();
   
-    while (1)
-    {
+    //while (1)
+    //{
 	//get_joystick_pos();
 	
-	_delay_ms(100);
+	//_delay_ms(100);
 	
-    }
+    //}
 }
 
