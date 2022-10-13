@@ -34,6 +34,7 @@ int main(void)
 	joystick_calibrate();
 	OLED_init();
 	
+	OLED_test();
 	
 	
 	//Ports setting 

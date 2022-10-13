@@ -14,6 +14,7 @@
 #include "tests.h"
 #include "JOYSTICK.h"
 #include "SLIDER.h"
+#include "OLED.h"
 
 void test_blinking()
 {
@@ -102,9 +103,22 @@ void USB_multi_test() {
 	while(1) {
 		joystick_pos pos = get_joystick_pos();
 		printf("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\r\n");
-		printf("Left button : %d   Right button : %d  \n\rLeft slider : %d   Right slider : %d  \n\rJoystick pos : X =  %d Y = %d\r\n", Left_Button(), Right_Button(), ADC_Read(2), ADC_Read(3), pos.x, pos.y);
+		printf("Left button : %d   Right button : %d  Joystick button : %d \n\rLeft slider : %d   Right slider : %d  \n\rJoystick pos : X =  %d Y = %d\r\n", Left_Button(), Right_Button(), joystick_button(), ADC_Read(2), ADC_Read(3), pos.x, pos.y);
 		printf("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\r\n");
 		_delay_ms(1000);
 	}
 	
+}
+
+
+void OLED_test() {
+	
+	OLED_reset();
+	
+	OLED_set_page(0x00);
+	OLED_set_column(0x00);
+	
+	OLED_print_char('A');
+	OLED_go_to_page();
+	OLED_print_string("VIVE LA FRANCE ! ");
 }

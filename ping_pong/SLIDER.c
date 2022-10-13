@@ -36,6 +36,8 @@ int Right_Button(){
 	//B6 B7
 }
 
+
+
 int Left_Slider(){
 	return ADC_Read(2);
 }

@@ -16,6 +16,7 @@ void test_printf();
 void SRAM_test(void);
 void SRAM_mapping_test();
 void USB_multi_test();
+void OLED_test();
 
 
 #endif /* TESTS1_H_ */

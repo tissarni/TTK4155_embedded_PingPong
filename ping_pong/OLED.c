@@ -7,14 +7,21 @@
 
 #include <stdio.h>
 #include <util/delay.h>
+#include <string.h>
+//#include <avr/pgmspace.h>
 #include "SRAM.h"
 #include "OLED.h"
+#include "fonts.h"
 
 volatile oled_pos current_pos;
 
 
 void OLED_init()
 {
+	current_pos.page = 0x00;
+	current_pos.column = 0x00;
+	
+	
 	oled_write_c(0xae); // display off
 	oled_write_c(0xa1); //segment remap
 	oled_write_c(0xda); //common pads hardware: alternative
@@ -36,28 +43,8 @@ void OLED_init()
 	oled_write_c(0x00);
 	oled_write_c(0xa4); //out follows RAM content
 	oled_write_c(0xa6); //set normal display
-	
 	oled_write_c(0xaf); // display on
 	
-	OLED_reset();
-	
-	OLED_set_page(0x04);
-	OLED_set_column(0x00);
-	oled_write_d(0xff);
-	OLED_go_to_page();
-	oled_write_d(0xff);
-	oled_write_d(0xff);
-	oled_write_d(0xff);
-	oled_write_d(0xff);
-	oled_write_d(0xff);
-	oled_write_d(0xff);
-	oled_write_d(0xff);
-	
-	
-	_delay_ms(1000);
-	OLED_reset();
-	
-
 }
 
 void oled_write_c(uint8_t command) {
@@ -68,6 +55,14 @@ void oled_write_c(uint8_t command) {
 void oled_write_d(uint8_t data) {
 	OLED_set_page(current_pos.page);
 	xmem_write(data, 0x0200);
+}
+
+void OLED_clear_page(){
+	OLED_set_column(0x00);
+	for (int column = 0; column < 128; column++) {
+		oled_write_d(0x00);
+	}
+	OLED_set_column(0x00);
 }
 
 
@@ -86,14 +81,6 @@ void OLED_home(){}
 void OLED_go_to_page() {
 	uint8_t next_page = current_pos.page + 0x01;
 	OLED_set_page(next_page);
-	OLED_set_column(0x00);	
-}
-	
-void OLED_clear_page(int page){
-	OLED_set_column(0x00);	
-	for (int column = 0; column < 128; column++) {
-		oled_write_d(0x00);
-	}
 	OLED_set_column(0x00);	
 }
 	
@@ -119,8 +106,23 @@ void OLED_set_column(uint8_t column) {
 	command = 0x10 | command;
 	oled_write_c(command);
 }
+
+void OLED_print_char(unsigned char c){ // typo for calling func -> 'A' and not "A"
+	int to_print = (int)c - 32;
 	
-void OLED_write_data(volatile c) {}
+	for (int i = 0; i < 8; i++){
+		oled_write_d(pgm_read_byte(&font8[to_print][i]));
+	}
+	
+}
+
+void OLED_print_string(char* string) {
+	int string_length = strlen(string);
+	for (int i = 0; i < string_length; i++) {
+		OLED_print_char(string[i]); 
+	}
+	
+}
 	
 void OLED_print(char* c){}
 	

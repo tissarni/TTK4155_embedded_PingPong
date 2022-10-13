@@ -5,7 +5,7 @@
  *  Author: titouani
  */ 
 
-
+#include <avr/io.h>
 #include <stdio.h>
 #include "JOYSTICK.h"
 #include "ADC.h"
@@ -83,4 +83,13 @@ joystick_dir get_joystick_dir() {
 	
 	return dir;
 	
+}
+
+int joystick_button() {
+	int x = 0;
+	if ((PIND & 0b00100000) != 0b00100000) {
+		x = 1;
+		printf("Joystick button \r\n");
+	}
+	return x;
 }

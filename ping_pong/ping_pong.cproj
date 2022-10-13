@@ -162,6 +162,9 @@
     <Compile Include="ADC.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="fonts.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="JOYSTICK.c">
       <SubType>compile</SubType>
     </Compile>
@@ -169,6 +172,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MENU.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MENU.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="OLED.c">
