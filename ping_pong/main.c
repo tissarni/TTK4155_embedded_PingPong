@@ -34,10 +34,11 @@ int main(void)
 	joystick_calibrate();
 	OLED_init();
 	
-	OLED_test();
-	
-	
-	//Ports setting 
+	//OLED_test();
+	//OLED_home();
+	//OLED_score();
+	//OLED_scenario();
+	////Ports setting 
 	DDRE = 0b11111111;
     //DDRA = 0b11111111; 
 	//DDRD |= 0b11000000;
@@ -47,18 +48,18 @@ int main(void)
 	//PORTB = (0<<PB1)|(0<<PB0);	//PORTD = (1<<PD6)|(1<<PD7);
 	//PORTC =0b00000000;
 	
-	//USB_multi_test();
+	USB_multi_test();
 
 	
 	//SRAM_test();
 	//SRAM_mapping_test();
   
-    //while (1)
-    //{
+    /*while (1)
+    {
 	//get_joystick_pos();
-	
+	//joystick_button();
 	//_delay_ms(100);
 	
-    //}
+    }*/
 }
 

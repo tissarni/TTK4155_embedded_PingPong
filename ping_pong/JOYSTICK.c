@@ -62,7 +62,7 @@ joystick_dir get_joystick_dir() {
 	dir = NEUTRAL;
 	
 	
-	if (abs(mean_pos.x - pos.x) < 5 & abs(mean_pos.y - pos.y) < 5) 
+	if (abs(mean_pos.x - pos.x) < 10 & abs(mean_pos.y - pos.y) < 10) 
 	{
 		return NEUTRAL;
 	} else {
@@ -89,7 +89,8 @@ int joystick_button() {
 	int x = 0;
 	if ((PIND & 0b00100000) != 0b00100000) {
 		x = 1;
-		printf("Joystick button \r\n");
+		
 	}
+	//printf("\r\n Joystick button %d ",x);
 	return x;
 }

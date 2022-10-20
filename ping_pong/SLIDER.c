@@ -14,9 +14,9 @@
 #include "SLIDER.h"
 
 int Left_Button(){
-	// PORTB6
+	// PORTB6 -> PORTD2
 	int x = 0;
-	if ((PINB & 0b01000000) == 0b01000000){
+	if ((PIND & 0b0000100) == 0b00000100){
 		x = 1;
 		printf("Left button \r\n");
 	}
@@ -26,9 +26,9 @@ int Left_Button(){
 }
 
 int Right_Button(){
-	// PORTB7
+	// PORTB7  -> PORTD3
 	int x = 0;
-	if ((PINB & 0b10000000) == 0b10000000){
+	if ((PIND & 0b0001000) == 0b00001000){
 		x=1;
 		printf("Right button \r\n");
 	}

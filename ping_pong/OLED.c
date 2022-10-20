@@ -12,6 +12,8 @@
 #include "SRAM.h"
 #include "OLED.h"
 #include "fonts.h"
+#include "JOYSTICK.h"
+
 
 volatile oled_pos current_pos;
 
@@ -73,11 +75,105 @@ void OLED_reset() {
 		OLED_clear_page(page);
 		OLED_go_to_page();
 	}
-	
+	OLED_set_page(0x00);
+	OLED_set_column(0x00);
 }
 	
-void OLED_home(){}
+void OLED_home(){
 	
+	OLED_reset();
+	OLED_set_page(0x00);
+	OLED_set_column(0x28);
+	OLED_print_string("Menu");
+	OLED_go_to_page();
+	OLED_go_to_page();
+	OLED_print_string("Play");
+	OLED_go_to_page();
+	OLED_print_string("Score");
+
+	/*
+	OLED_set_page(0x00);
+	OLED_set_column(0x28);
+	OLED_print_string("Jeu");
+	*/
+}
+
+void OLED_score(){
+	char* score_player1 = "99";
+	char* score_player2 = "99";
+	OLED_reset();
+	OLED_set_page(0x00);
+	OLED_set_column(0x28);
+	OLED_print_string("Score");
+	OLED_go_to_page();
+	OLED_go_to_page();
+	OLED_print_string("Player 1 :  ");
+	OLED_print_string(score_player1);
+	OLED_go_to_page();
+	OLED_go_to_page();
+	OLED_print_string("Player 2 :  ");
+	OLED_print_string(score_player2);
+}
+
+void OLED_play(){
+	
+}
+
+
+void OLED_scenario(){ // changer position - current page
+	OLED_home();
+	int position = 0;
+	joystick_dir previous_position = NEUTRAL;
+	joystick_dir direction =  NEUTRAL;
+	
+	
+	while(1){
+		direction = get_joystick_dir();
+		if (previous_position == NEUTRAL){
+			switch(direction){
+				case(NEUTRAL):
+					position=position;
+					break;
+				case(RIGHT):
+					position=position;
+					break;
+				case(LEFT):
+					position=position;
+					break;
+				case(DOWN):
+					if(position < 3){
+						position++;
+					}
+					break;
+				case(UP):
+					if(position > 0){
+						position--;
+					}
+					break;
+			}
+			printf("\r\n position : %d", position);
+		}
+		previous_position=direction;
+		if (joystick_button()){
+			if (position == 3)
+			{
+				OLED_score();
+			}
+			else if (position == 2){
+				OLED_play();
+			}
+			else{
+				OLED_home();
+			}
+		}
+		
+	}
+	
+	
+	
+}
+
+
 void OLED_go_to_page() {
 	uint8_t next_page = current_pos.page + 0x01;
 	OLED_set_page(next_page);

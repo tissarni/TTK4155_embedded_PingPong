@@ -18,8 +18,8 @@ typedef struct
 void OLED_init();
 void oled_write_c(uint8_t command);
 void oled_write_d(uint8_t data);
+
 void OLED_reset();
-void OLED_home();
 void OLED_go_to_page();
 void OLED_clear_page();
 void OLED_set_page(uint8_t page);
@@ -30,6 +30,9 @@ void OLED_set_brightness(int level);
 void OLED_print_char(unsigned char c);
 void OLED_print_string(char* string);
 
+void OLED_home();
+void OLED_score();
+void OLED_play();
 
-
+void OLED_scenario();
 #endif /* OLED_H_ */
