@@ -17,6 +17,7 @@
 #include "ADC.h"
 #include "JOYSTICK.h"
 #include "OLED.h"
+#include "SPI.h"
 
 
 #define FOSC 4915200// Clock Speed
@@ -33,6 +34,7 @@ int main(void)
 	ADC_Init();
 	joystick_calibrate();
 	OLED_init();
+	SPI_MasterInit();
 	
 	//OLED_test();
 	//OLED_home();
@@ -48,18 +50,16 @@ int main(void)
 	//PORTB = (0<<PB1)|(0<<PB0);	//PORTD = (1<<PD6)|(1<<PD7);
 	//PORTC =0b00000000;
 	
-	USB_multi_test();
+	//USB_multi_test();
 
 	
 	//SRAM_test();
 	//SRAM_mapping_test();
   
-    /*while (1)
+    while (1)
     {
-	//get_joystick_pos();
-	//joystick_button();
-	//_delay_ms(100);
-	
-    }*/
+		SPI_MasterTransmit('c');
+		//_delay_ms(1000);
+    }
 }
 

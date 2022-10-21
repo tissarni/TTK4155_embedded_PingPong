@@ -9,7 +9,7 @@
 
 menu main_menu, play, score;
 
-void MENU_init() {
+/*void MENU_init() {
 	
 	main_menu.name = "MAIN MENU";
 	main_menu.parent = NULL;
@@ -56,4 +56,4 @@ void MENU_run(menu *current_menu){
 			OLED_print_string("VIVE LA TURQUIE !");
 			break;
 	}
-}
+}*/

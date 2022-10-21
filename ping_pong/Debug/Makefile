@@ -43,6 +43,7 @@ C_SRCS +=  \
 ../MENU.c \
 ../OLED.c \
 ../SLIDER.c \
+../SPI.c \
 ../SRAM.c \
 ../tests.c \
 ../UART.c
@@ -61,6 +62,7 @@ main.o \
 MENU.o \
 OLED.o \
 SLIDER.o \
+SPI.o \
 SRAM.o \
 tests.o \
 UART.o
@@ -72,6 +74,7 @@ main.o \
 MENU.o \
 OLED.o \
 SLIDER.o \
+SPI.o \
 SRAM.o \
 tests.o \
 UART.o
@@ -83,6 +86,7 @@ main.d \
 MENU.d \
 OLED.d \
 SLIDER.d \
+SPI.d \
 SRAM.d \
 tests.d \
 UART.d
@@ -94,6 +98,7 @@ main.d \
 MENU.d \
 OLED.d \
 SLIDER.d \
+SPI.d \
 SRAM.d \
 tests.d \
 UART.d
@@ -148,6 +153,13 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./SLIDER.o: .././SLIDER.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./SPI.o: .././SPI.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega162 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega162" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

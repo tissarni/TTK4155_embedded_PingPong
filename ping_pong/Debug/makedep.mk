@@ -14,6 +14,8 @@ OLED.c
 
 SLIDER.c
 
+SPI.c
+
 SRAM.c
 
 tests.c
