@@ -4,9 +4,13 @@
 
 ADC.c
 
+CAN.c
+
 JOYSTICK.c
 
 main.c
+
+MCP.c
 
 MENU.c
 

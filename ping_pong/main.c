@@ -18,6 +18,7 @@
 #include "JOYSTICK.h"
 #include "OLED.h"
 #include "SPI.h"
+#include "CAN.h"
 
 
 #define FOSC 4915200// Clock Speed
@@ -34,7 +35,8 @@ int main(void)
 	ADC_Init();
 	joystick_calibrate();
 	OLED_init();
-	SPI_MasterInit();
+	can_init();
+		
 	
 	//OLED_test();
 	//OLED_home();
@@ -51,15 +53,46 @@ int main(void)
 	//PORTC =0b00000000;
 	
 	//USB_multi_test();
-
+	
 	
 	//SRAM_test();
 	//SRAM_mapping_test();
   
-    while (1)
+  
+	can_message to_send;
+	to_send.id = 43;
+	to_send.length = 8;
+	to_send.data[0] = 'B';
+	to_send.data[1] = 'I';
+	to_send.data[2] = 'E';
+	to_send.data[3] = 'R';
+	to_send.data[4] = 'E';
+	to_send.data[5] = ' ';
+	to_send.data[6] = '!';
+ 	
+	 
+	 printf("TRANSMIT => length :  %d \n\rid : %d \n\rdata : %s \n\r", to_send.length, to_send.id, to_send.data);
+	 can_send(&to_send);
+	 printf("----------------------------------------------------------------------------------------------------------------------\n\r");
+	 can_message receive = can_receive();
+	 printf("RECEIVE => length:  %d \n\rid: %d \n\rdata: %s \n\r", receive.length, receive.id, receive.data);
+ 
+	 printf("----------------------------------------------------------------------------------------------------------------------\n\r");
+
+    /*while (1)
     {
-		SPI_MasterTransmit('c');
-		//_delay_ms(1000);
-    }
+		printf("----------------------------------------------------------------------------------------------------------------------\n\r");
+		printf("----------------------------------------------------------------------------------------------------------------------\n\r");
+		
+		printf("----------------------------------------------------------------------------------------------------------------------\n\r");
+		
+		
+		
+			
+		
+		
+		
+		_delay_ms(1000);
+    }*/
 }
 

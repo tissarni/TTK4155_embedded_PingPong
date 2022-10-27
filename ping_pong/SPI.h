@@ -11,6 +11,7 @@
 
 void SPI_MasterInit(void);
 void SPI_MasterTransmit(char cData);
+char SPI_MaserRead();
 
 
 #endif /* SPI_H_ */

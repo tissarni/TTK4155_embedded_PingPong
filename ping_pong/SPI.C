@@ -27,4 +27,15 @@ void SPI_MasterTransmit(char cData)
 	;
 }
 
+char SPI_MaserRead() {
+	
+	SPI_MasterTransmit(0);
+	
+	while(!(SPSR & (1<<SPIF)))
+	;
+	
+	return SPDR;
+	
+}
+
 
