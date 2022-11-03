@@ -60,6 +60,7 @@ int main(void)
   
   
 	can_message to_send;
+	can_message receive;
 	to_send.id = 43;
 	to_send.length = 8;
 	to_send.data[0] = 'B';
@@ -71,28 +72,23 @@ int main(void)
 	to_send.data[6] = '!';
  	
 	 
-	 printf("TRANSMIT => length :  %d \n\rid : %d \n\rdata : %s \n\r", to_send.length, to_send.id, to_send.data);
-	 can_send(&to_send);
-	 printf("----------------------------------------------------------------------------------------------------------------------\n\r");
-	 can_message receive = can_receive();
-	 printf("RECEIVE => length:  %d \n\rid: %d \n\rdata: %s \n\r", receive.length, receive.id, receive.data);
- 
-	 printf("----------------------------------------------------------------------------------------------------------------------\n\r");
-
-    /*while (1)
+	
+    while (1)
     {
-		printf("----------------------------------------------------------------------------------------------------------------------\n\r");
-		printf("----------------------------------------------------------------------------------------------------------------------\n\r");
-		
-		printf("----------------------------------------------------------------------------------------------------------------------\n\r");
-		
-		
+		 printf("TRANSMIT => length :  %d \n\rid : %d \n\rdata : %s \n\r", to_send.length, to_send.id, to_send.data);
+		 can_send(&to_send);
+		 printf("----------------------------------------------------------------------------------------------------------------------\n\r");
+		 receive = can_receive();
+		 printf("RECEIVE => length:  %d \n\rid: %d \n\rdata: %s \n\r", receive.length, receive.id, receive.data);
+		 
+		 printf("----------------------------------------------------------------------------------------------------------------------\n\r");
+
 		
 			
 		
 		
 		
 		_delay_ms(1000);
-    }*/
+    }
 }
 

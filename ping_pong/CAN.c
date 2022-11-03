@@ -42,6 +42,6 @@ can_message can_receive() {
 	for(int i = 0; i < message.length; i++) {
 		message.data[i] = mcp_read(MCP_RXB0D0 + i);
 	}
-	mcp_reset();
+
 	return message;
 }
