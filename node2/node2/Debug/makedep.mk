@@ -2,27 +2,17 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-Node1\ADC.c
+can_controller.c
 
-Node1\CAN.c
+can_interrupt.c
 
-Node1\JOYSTICK.c
+Device_Startup\startup_sam3xa.c
 
-Node1\main.c
+Device_Startup\system_sam3xa.c
 
-Node1\MCP.c
+main.c
 
-Node1\MENU.c
+printf-stdarg.c
 
-Node1\OLED.c
-
-Node1\SLIDER.c
-
-Node1\SPI.c
-
-Node1\SRAM.c
-
-Node1\tests.c
-
-Node1\UART.c
+uart.c
 
