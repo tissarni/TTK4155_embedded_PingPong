@@ -33,27 +33,32 @@ joystick_pos get_joystick_pos(){
 	case UP:
 		pos.y = (uint8_t)abs(((ADC_Read(0) - mean_pos.y) * 100) / (223 - mean_pos.y));
 		pos.x = (uint8_t)abs(((ADC_Read(1) - mean_pos.x) * 100) / mean_pos.x);
-		printf("Direction : UP ");
+		pos.dir = UP;
+		//printf("Direction : UP ");
 		break;
 	case RIGHT:
 		pos.x = (int)abs(((ADC_Read(1) - mean_pos.x) * 100) / (223 - mean_pos.x));
 		pos.y = (int)abs(((ADC_Read(0) - mean_pos.y) * 100) / mean_pos.y);
-		printf("Direction : RIGHT ");
+		pos.dir = RIGHT;
+		//printf("Direction : RIGHT ");
 		break;
 	case LEFT:
 		pos.x = (int)abs(((ADC_Read(1) - mean_pos.x) * 100) / abs(3 - mean_pos.x));
 		pos.y = (int)abs(((ADC_Read(0) - mean_pos.y) * 100) / mean_pos.y);
-		printf("Direction : LEFT ");
+		pos.dir = LEFT;
+		//printf("Direction : LEFT ");
 		break;
 	case DOWN:
 		pos.y = (int)abs(((ADC_Read(0) - mean_pos.y) * 100) / abs(3 - mean_pos.y));
 		pos.x = (int)abs(((ADC_Read(1) - mean_pos.x) * 100) / mean_pos.x);
-		printf("Direction : DOWN ");
+		pos.dir = DOWN;
+		//printf("Direction : DOWN ");
 		break;
 	case NEUTRAL:
 		pos.x = 0;
 		pos.y = 0;
-		printf("Direction : NEUTRE ");
+		pos.dir = NEUTRAL;
+		//printf("Direction : NEUTRE ");
 	}
 	
 

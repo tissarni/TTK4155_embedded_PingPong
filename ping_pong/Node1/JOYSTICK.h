@@ -10,15 +10,18 @@
 #define JOYSTICK_H_
 #include "CAN.h"
 
+
+typedef enum {UP, DOWN, LEFT, RIGHT, NEUTRAL} joystick_dir;
+
 typedef struct  
 {
 	uint8_t x;
 	uint8_t y;
+	joystick_dir dir;
 } joystick_pos;
 
 joystick_pos joystick_calibrate();
 
-typedef enum {UP, DOWN, LEFT, RIGHT, NEUTRAL} joystick_dir;
 joystick_dir get_joystick_dir();
 joystick_pos get_joystick_pos();
 int joystick_button();

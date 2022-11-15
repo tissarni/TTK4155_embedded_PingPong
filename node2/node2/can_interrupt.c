@@ -28,6 +28,7 @@
  */
 void CAN0_Handler( void )
 {
+	
 	if(DEBUG_INTERRUPT)printf("CAN0 interrupt\n\r");
 	char can_sr = CAN0->CAN_SR; 
 	
@@ -37,8 +38,8 @@ void CAN0_Handler( void )
 		CAN_MESSAGE message;
 		if(can_sr & CAN_SR_MB1)  //Mailbox 1 event
 		{
-			can_receive(&message, 1);
-
+			can_receive(&message, 0);
+			
 		}
 		else if(can_sr & CAN_SR_MB2) //Mailbox 2 event
 		

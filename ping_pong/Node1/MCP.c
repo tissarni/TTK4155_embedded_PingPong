@@ -14,8 +14,8 @@
 uint8_t mcp_init()
 {
 	uint8_t value ;
-	SPI_MasterInit () ; // Initialize SPI
-	mcp_reset (); // Send reset - command
+	SPI_MasterInit() ; // Initialize SPI
+	mcp_reset(); // Send reset - command
 	// Self - test
 	value = mcp_read(MCP_CANSTAT) ;
 	

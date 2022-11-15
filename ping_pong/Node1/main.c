@@ -9,6 +9,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdio.h>
+#include <avr/interrupt.h>
 
 #include "UART.h"
 #include "SRAM.h"
@@ -33,7 +34,7 @@ int main(void)
 	UART_Init(MYUBRR);
 	SRAM_Init();
 	ADC_Init();
-	//joystick_calibrate();
+	joystick_calibrate();
 	OLED_init();
 	can_init();
 		
@@ -43,7 +44,7 @@ int main(void)
 	//OLED_score();
 	//OLED_scenario();
 	////Ports setting 
-	DDRE = 0b11111111;
+	//DDRE = 0b11111111;
     //DDRA = 0b11111111; 
 	//DDRD |= 0b11000000;
 	//DDRC = DDRC | 0b00001111;
@@ -51,6 +52,16 @@ int main(void)
 	//PORTA = 0b00000000;
 	//PORTB = (0<<PB1)|(0<<PB0);	//PORTD = (1<<PD6)|(1<<PD7);
 	//PORTC =0b00000000;
+	
+	DDRE &= ~(1 << PE0);
+	GICR &= 0b00000111;
+	EMCUCR &= ~(1 << ISC2);
+	GIFR |= (1 << INTF2);
+	GICR |= (1 << INT2);
+	sei();
+
+	
+	
 	
 	//USB_multi_test();
 	
@@ -60,10 +71,11 @@ int main(void)
   
   
 	can_message to_send;
+	can_message received;
 	
 	to_send.id = 43;
 	to_send.length = 3;
-	
+	int i = 3;
 	 
 	
     while (1)
@@ -76,54 +88,55 @@ int main(void)
 		 
 		 //printf("----------------------------------------------------------------------------------------------------------------------\n\r");
 		joystick_pos pos;
-		
+		i++;
 		pos = get_joystick_pos();
+		//to_send.id = 12;
+		//to_send.length = 1;
+		to_send.data[0] = i;
 		//to_send.data[0] = pos.x;
-		uint8_t a = 0x12;
-		to_send.data[0] = pos.y;
+		//to_send.data[0] = pos.y;
 		to_send.data[1] = pos.x;
-		to_send.data[2] = 'F';
+		to_send.data[2] = pos.dir;
+		
 		can_send(&to_send);
 		//send_joystick_pos(&to_send);
 			
-		printf("Vertical : %d      Horizontal  %d \r\n", pos.y,pos.x);
-		/*can_message data = can_receive();
-		for(int i=0;i<data.length;i++){
-			printf("RECEIVE : %x , %d \n\r", data.data[i], data.id);
-		}*/
+		printf("Vertical : %d      Horizontal  %d   DIR : %s \r\n LENGHT : %d     ID : %d \r\n", to_send.data[0], to_send.data[1], (to_send.data[2] == RIGHT) ? "rigth" : "de lamerde", to_send.length, to_send.id);
+		_delay_ms(100);
 		
+		//received = can_receive();
+		
+		//printf("RECEIVE 1 : %d \n\r", received.data[0]);
 		
 		
 		/*to_send.data[1] = 1;
 		can_send(&to_send);
-		printf("Vertical : %d  \n\r", to_send.data[1]);
-		printf("RECEIVE : %d \n\r", can_receive().data[1]);
+		printf("Vertical 1 : %d  \n\r", to_send.data[1]);
+		_delay_ms(1000);
+		printf("RECEIVE 1 : %d \n\r", can_receive().data[1]);
 		_delay_ms(1000);
 		
 		to_send.data[1] = 2;
-		printf("Vertical : %d  \n\r", to_send.data[1]);
+		printf("Vertical 2 : %d  \n\r", to_send.data[1]);
 		can_send(&to_send);
-		printf("RECEIVE : %d \n\r", can_receive().data[1]);
+		_delay_ms(1000);
+		printf("RECEIVE 2 : %d \n\r", can_receive().data[1]);
 		_delay_ms(1000);
 		
 		to_send.data[1] = 3;
-		printf("Vertical : %d  \n\r", to_send.data[1]);
+		printf("Vertical 3 : %d  \n\r", to_send.data[1]);
 		can_send(&to_send);
-		printf("RECEIVE : %d \n\r", can_receive().data[1]);
+		_delay_ms(1000);
+		printf("RECEIVE 3 : %d \n\r", can_receive().data[1]);
 		_delay_ms(1000);
 		
 		to_send.data[1] =4;
-		printf("Vertical : %d  \n\r", to_send.data[1]);
+		printf("Vertical 4 : %d  \n\r", to_send.data[1]);
 		can_send(&to_send);
-		printf("RECEIVE : %d \n\r", can_receive().data[1]);
 		_delay_ms(1000);
+		printf("RECEIVE 4 : %d \n\r", can_receive().data[1]);
+		_delay_ms(1000);*/
 		
-		to_send.data[1] = 5;
-		printf("Vertical : %d  \n\r", to_send.data[1]);
-		can_send(&to_send);
-		
-		to_send.data[1] = 7;
-		can_send(&to_send);*/
 		
 		
 		//_delay_ms(5000);

@@ -17,7 +17,6 @@ void can_init() {
 	mcp_write(MCP_CNF1, 0x03);
 	mcp_write(MCP_CNF2, 0xb1);
 	mcp_write(MCP_CNF3, 0x05);
-
 	
 	mcp_bit_modify(MCP_CANCTRL, MODE_MASK, MODE_NORMAL);
 }
@@ -39,6 +38,8 @@ void can_send(can_message* message) {  //TODO : Synchro clock noeud
 can_message can_receive() {
 	can_message message;
 	
+	mcp_bit_modify(MCP_CANINTF,MCP_RX0IF, 0x00);
+	
 	message.length = mcp_read(MCP_RXB0DLC);
 	message.id = (mcp_read(MCP_RXB0SIDH)  << 3) | (mcp_read(MCP_RXB0SIDL) >> 5);
 	
@@ -47,7 +48,7 @@ can_message can_receive() {
 		message.data[i] = mcp_read(MCP_RXB0D0 + (uint8_t)i);
 	}
 	
-	mcp_bit_modify(MCP_CANINTF,MCP_RX0IF, 0x00);
+	
 	
 	return message;
 }
