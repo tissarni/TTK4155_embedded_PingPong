@@ -22,7 +22,7 @@ uint8_t mcp_init()
 	if ((value & MODE_MASK) != MODE_CONFIG) {
 		printf (" MCP2515 is NOT in configuration mode after reset !\ n ") ;
 		return 1;
-	}
+	};
 	// More initialization
 	
 	return 0;

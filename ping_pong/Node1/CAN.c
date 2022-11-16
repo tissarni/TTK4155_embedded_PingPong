@@ -14,9 +14,10 @@
 
 void can_init() {
 	mcp_init();
-	mcp_write(MCP_CNF1, 0x03);
-	mcp_write(MCP_CNF2, 0xb1);
 	mcp_write(MCP_CNF3, 0x05);
+	mcp_write(MCP_CNF2, 0xb1);
+	mcp_write(MCP_CNF1, 0x03);
+	
 	
 	mcp_bit_modify(MCP_CANCTRL, MODE_MASK, MODE_NORMAL);
 }

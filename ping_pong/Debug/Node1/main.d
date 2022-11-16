@@ -19,7 +19,7 @@ Node1/main.d Node1/main.o: ../Node1/main.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  ../Node1/UART.h ../Node1/SRAM.h ../Node1/tests.h ../Node1/SLIDER.h \
  ../Node1/ADC.h ../Node1/JOYSTICK.h ../Node1/CAN.h ../Node1/OLED.h \
- ../Node1/SPI.h
+ ../Node1/SPI.h ../Node1/mcp2515.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -74,3 +74,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 ../Node1/OLED.h:
 
 ../Node1/SPI.h:
+
+../Node1/mcp2515.h:

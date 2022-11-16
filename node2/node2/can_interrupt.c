@@ -38,7 +38,7 @@ void CAN0_Handler( void )
 		CAN_MESSAGE message;
 		if(can_sr & CAN_SR_MB1)  //Mailbox 1 event
 		{
-			can_receive(&message, 0);
+			can_receive(&message, 1);
 			
 		}
 		else if(can_sr & CAN_SR_MB2) //Mailbox 2 event

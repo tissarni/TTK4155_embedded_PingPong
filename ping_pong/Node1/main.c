@@ -20,6 +20,7 @@
 #include "OLED.h"
 #include "SPI.h"
 #include "CAN.h"
+#include "mcp2515.h"
 
 
 #define FOSC 4915200// Clock Speed
@@ -57,7 +58,7 @@ int main(void)
 	GICR &= 0b00000111;
 	EMCUCR &= ~(1 << ISC2);
 	GIFR |= (1 << INTF2);
-	GICR |= (1 << INT2);
+	//GICR |= (1 << INT2);
 	sei();
 
 	
@@ -72,11 +73,10 @@ int main(void)
   
 	can_message to_send;
 	can_message received;
-	
-	to_send.id = 43;
-	to_send.length = 3;
-	int i = 3;
-	 
+	int i = 0;
+	to_send.length=3;
+	to_send.id = 54;
+
 	
     while (1)
     {
@@ -92,7 +92,7 @@ int main(void)
 		pos = get_joystick_pos();
 		//to_send.id = 12;
 		//to_send.length = 1;
-		to_send.data[0] = i;
+		to_send.data[0] = pos.y;
 		//to_send.data[0] = pos.x;
 		//to_send.data[0] = pos.y;
 		to_send.data[1] = pos.x;
@@ -106,7 +106,7 @@ int main(void)
 		
 		//received = can_receive();
 		
-		//printf("RECEIVE 1 : %d \n\r", received.data[0]);
+		
 		
 		
 		/*to_send.data[1] = 1;
