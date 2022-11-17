@@ -10,6 +10,8 @@
 #include "uart.h"
 #include "printf-stdarg.h"
 #include "can_controller.h"
+#include "PWM.h"
+#include "ir.h"
 #include <stdio.h>
 
 
@@ -19,8 +21,11 @@ int main(void)
     /* Initialize the SAM system */
     SystemInit();
 	configure_uart();
+	pwm_init();
+	adc_init();
 	
 	
+	int points = 0;
 	/* PIOA->PIO_PUDR |= PIO_PA19;
 	 /* Enable PIO controller on bit PC2(D0) */
 	 PIOA->PIO_PER |= PIO_PA19;
@@ -32,7 +37,8 @@ int main(void)
 	can_init_def_tx_rx_mb(baud_rate);
 	
 	
-
+	
+	
 
 	//PIOA->PIO_OER |= PIO_OER_P19;
 	//PIOA->PIO_OER |= PIO_OER_P20;
@@ -43,13 +49,21 @@ int main(void)
 	//receive.id = 0;
 	
 	
+	
     /* Replace with your application code */
     while (1) 
     {	
 		
+		points += score();
+		
+
+		printf("SCOORE : %d \r\n", points);
+		
+		can_receive(&receive, 0);
+		pwm_set_duty(receive.data[1], receive.data[2]);
 		
 		//can_receive(&receive, 0);
-		//printf("Vertical : %d      Horizontal  %d  \r\n LENGHT : %d     ID : %d \r\n", receive.data[1], receive.data[0], receive.data_length, receive.id);
+		//printf("Vertical : %d      Horizontal  %d  \r\n LENGHT : %d     ID : %d \r\n", receive.data[], receive.data[1], receive.data_length, receive.id);
 		//printf("--------------------------");
 		
 		//PIOA->PIO_SODR = PIO_SODR_P19;

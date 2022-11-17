@@ -159,6 +159,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ir.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ir.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="can_controller.c">
       <SubType>compile</SubType>
     </Compile>
@@ -184,6 +190,18 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="printf-stdarg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PWM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PWM.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="score.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="score.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="uart.c">
