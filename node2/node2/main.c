@@ -12,6 +12,8 @@
 #include "can_controller.h"
 #include "PWM.h"
 #include "ir.h"
+#include "motor.h"
+#include "DAC.h"
 #include <stdio.h>
 
 
@@ -23,6 +25,8 @@ int main(void)
 	configure_uart();
 	pwm_init();
 	adc_init();
+	DAC_init();
+	motor_init();	
 	
 	
 	int points = 0;
@@ -49,21 +53,24 @@ int main(void)
 	//receive.id = 0;
 	
 	
-	
+	float toto = 4;
     /* Replace with your application code */
     while (1) 
     {	
-		
-		points += score();
+		//encoder_read();
+		//DAC_send_voltage(&toto);
+		/*points += score();
 		
 
-		printf("SCOORE : %d \r\n", points);
+		printf("SCOORE : %d \r\n", points);*/
 		
 		can_receive(&receive, 0);
-		pwm_set_duty(receive.data[1], receive.data[2]);
+		set_positon(receive.data[0], receive.data[2]);
+		
+		//pwm_set_duty(receive.data[1], receive.data[2]);
 		
 		//can_receive(&receive, 0);
-		//printf("Vertical : %d      Horizontal  %d  \r\n LENGHT : %d     ID : %d \r\n", receive.data[], receive.data[1], receive.data_length, receive.id);
+		//printf("Vertical : %d     dir : %d      \r\n", receive.data[0], receive.data[2]);
 		//printf("--------------------------");
 		
 		//PIOA->PIO_SODR = PIO_SODR_P19;

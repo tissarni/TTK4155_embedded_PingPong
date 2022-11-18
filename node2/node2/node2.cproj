@@ -159,6 +159,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DAC.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="DAC.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ir.c">
       <SubType>compile</SubType>
     </Compile>
@@ -186,6 +192,12 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="motor.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="motor.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="printf-stdarg.c">
       <SubType>compile</SubType>
     </Compile>
@@ -196,12 +208,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="PWM.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="score.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="score.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="uart.c">
