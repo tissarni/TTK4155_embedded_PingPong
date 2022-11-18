@@ -18,6 +18,7 @@ typedef struct
 	uint8_t x;
 	uint8_t y;
 	joystick_dir dir;
+	int button;
 } joystick_pos;
 
 joystick_pos joystick_calibrate();

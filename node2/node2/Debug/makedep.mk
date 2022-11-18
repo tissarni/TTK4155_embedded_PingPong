@@ -22,5 +22,7 @@ printf-stdarg.c
 
 PWM.c
 
+solenoid.c
+
 uart.c
 

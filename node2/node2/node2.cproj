@@ -210,6 +210,12 @@
     <Compile Include="PWM.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="solenoid.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="solenoid.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="uart.c">
       <SubType>compile</SubType>
     </Compile>

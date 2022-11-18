@@ -104,3 +104,13 @@ void set_positon(int joy_value, int dir) {
 	DAC_send_voltage(&u);
 	
 }
+
+
+void set_pin(){
+
+	PIOC->PIO_SODR |= PIO_PC9;
+	 delay(1000);
+	 PIOC->PIO_CODR |= PIO_PC9;
+ 	 //PIOC->PIO_SODR &= ~PIO_PC9;
+	 delay(1000);
+}

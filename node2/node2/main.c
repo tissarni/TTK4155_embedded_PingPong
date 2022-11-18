@@ -14,6 +14,7 @@
 #include "ir.h"
 #include "motor.h"
 #include "DAC.h"
+#include "solenoid.h"
 #include <stdio.h>
 
 
@@ -27,6 +28,7 @@ int main(void)
 	adc_init();
 	DAC_init();
 	motor_init();	
+	//solenoid_init();
 	
 	
 	int points = 0;
@@ -41,8 +43,7 @@ int main(void)
 	can_init_def_tx_rx_mb(baud_rate);
 	
 	
-	
-	
+
 
 	//PIOA->PIO_OER |= PIO_OER_P19;
 	//PIOA->PIO_OER |= PIO_OER_P20;
@@ -51,7 +52,9 @@ int main(void)
 	CAN_MESSAGE receive;
 	//receive.data_length = 0;
 	//receive.id = 0;
-	
+	PIOC->PIO_PER |= PIO_PC9;
+	PIOC->PIO_OER |= PIO_PC9;
+	set_pin();
 	
 	float toto = 4;
     /* Replace with your application code */
@@ -59,6 +62,9 @@ int main(void)
     {	
 		//encoder_read();
 		//DAC_send_voltage(&toto);
+		
+		set_pin();
+		
 		/*points += score();
 		
 
@@ -66,6 +72,12 @@ int main(void)
 		
 		can_receive(&receive, 0);
 		set_positon(receive.data[0], receive.data[2]);
+		
+		/*if (receive.data[3] == 1)
+		{
+			solenoid_fire();
+		}*/
+		
 		
 		//pwm_set_duty(receive.data[1], receive.data[2]);
 		

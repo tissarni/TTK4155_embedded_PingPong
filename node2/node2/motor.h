@@ -16,6 +16,7 @@ void motor_init();
 uint16_t encoder_read();
 void delay(int num);
 void set_positon(int joy_value, int dir);
+void set_pin();
 
 
 #endif /* MOTOR_H_ */

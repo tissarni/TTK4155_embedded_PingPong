@@ -74,7 +74,7 @@ int main(void)
 	can_message to_send;
 	can_message received;
 	int i = 0;
-	to_send.length=3;
+	to_send.length=4;
 	to_send.id = 54;
 
 	
@@ -90,6 +90,7 @@ int main(void)
 		joystick_pos pos;
 		i++;
 		pos = get_joystick_pos();
+		pos.button = joystick_button();
 		//to_send.id = 12;
 		//to_send.length = 1;
 		to_send.data[0] = pos.y;
@@ -97,11 +98,12 @@ int main(void)
 		//to_send.data[0] = pos.y;
 		to_send.data[1] = pos.x;
 		to_send.data[2] = pos.dir;
+		to_send.data[3] = pos.button;
 		
 		can_send(&to_send);
 		//send_joystick_pos(&to_send);
 			
-		printf("Vertical : %d      Horizontal  %d   DIR : %s \r\n LENGHT : %d     ID : %d \r\n", to_send.data[0], to_send.data[1], (to_send.data[2] == RIGHT) ? "rigth" : "de lamerde", to_send.length, to_send.id);
+		printf("Vertical : %d      Horizontal  %d   DIR : %s \r\n button : %d     \r\n", to_send.data[0], to_send.data[1], (to_send.data[2] == RIGHT) ? "rigth" : "de lamerde", to_send.data[3]);
 		_delay_ms(100);
 		
 		//received = can_receive();
