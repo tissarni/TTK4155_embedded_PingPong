@@ -17,6 +17,4 @@ void mcp_bit_modify(uint8_t address_register, uint8_t mask, uint8_t data);
 void mcp_reset();
 void mcp_read_status();
 
-
-
 #endif /* MCP_H_ */

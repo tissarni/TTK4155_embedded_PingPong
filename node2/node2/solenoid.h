@@ -12,6 +12,6 @@
 void solenoid_init(void);
 void solenoid_start(void);
 void solenoid_stop(void);
-void solenoid_fire(void);
+void solenoid_fire(int button);
 
 #endif /* SOLENOID_H_ */

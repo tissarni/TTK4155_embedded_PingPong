@@ -16,6 +16,7 @@ uint8_t mcp_init()
 	uint8_t value ;
 	SPI_MasterInit() ; // Initialize SPI
 	mcp_reset(); // Send reset - command
+	
 	// Self - test
 	value = mcp_read(MCP_CANSTAT) ;
 	
@@ -23,7 +24,6 @@ uint8_t mcp_init()
 		printf (" MCP2515 is NOT in configuration mode after reset !\ n ") ;
 		return 1;
 	};
-	// More initialization
 	
 	return 0;
 }
@@ -52,7 +52,6 @@ uint8_t mcp_read(uint8_t address)
 }
 
 void mcp_write(uint8_t address, uint8_t data) {
-	
 	PORTB &= ~(1 << PINB4); 
 	
 	SPI_MasterTransmit(MCP_WRITE);
@@ -82,9 +81,7 @@ void mcp_request_send(int buffer) {
 			SPI_MasterTransmit(0x80);
 			break;
 	}
-	
-	//SPI_MasterTransmit(MCP_RTS_TX0);
-	
+
 	PORTB |= (1 << PINB4);
 };
 	
@@ -100,8 +97,8 @@ void mcp_reset() {
 void mcp_read_status() {
 		uint8_t result ;
 		PORTB &= ~(1 << PINB4);
-		
 		SPI_MasterTransmit(MCP_READ_STATUS);
+		
 		result = SPI_MaserRead();
 		
 		PORTB |= (1 << PINB4);

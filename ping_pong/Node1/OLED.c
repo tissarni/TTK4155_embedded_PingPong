@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <util/delay.h>
 #include <string.h>
-//#include <avr/pgmspace.h>
+
 #include "SRAM.h"
 #include "OLED.h"
 #include "fonts.h"
@@ -90,12 +90,6 @@ void OLED_home(){
 	OLED_print_string("Play");
 	OLED_go_to_page();
 	OLED_print_string("Score");
-
-	/*
-	OLED_set_page(0x00);
-	OLED_set_column(0x28);
-	OLED_print_string("Jeu");
-	*/
 }
 
 void OLED_score(){
@@ -151,7 +145,6 @@ void OLED_scenario(){ // changer position - current page
 					}
 					break;
 			}
-			printf("\r\n position : %d", position);
 		}
 		previous_position=direction;
 		if (joystick_button()){
@@ -194,11 +187,14 @@ void OLED_set_column(uint8_t column) {
 	uint8_t mask_lsb = 0x0F;
 	uint8_t command = mask_lsb & column;
 	oled_write_c(command);
+	
 	uint8_t mask_msb = 0xF0;
 	command = mask_msb & column;
+	
 	for(int i=0;i<4;i++){
 		command = command >> 1;
 	}
+	
 	command = 0x10 | command;
 	oled_write_c(command);
 }

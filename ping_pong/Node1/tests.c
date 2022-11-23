@@ -83,23 +83,17 @@ void SRAM_test(void)
 
 void SRAM_mapping_test()
 {	
-	//SRAM_test();
 	while(1) {
 		
 		xmem_write("c", 0x0400);
 		printf("\n ADC \n\r");
 		_delay_ms(1000);
 		
-		/*xmem_write("c", 0x0800);
-		printf("\n SRAM \n\r");
-		_delay_ms(500);*/
 	}
 }
 
 void USB_multi_test() {
-	
-	
-	
+
 	while(1) {
 		joystick_pos pos = get_joystick_pos();
 		printf("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\r\n");

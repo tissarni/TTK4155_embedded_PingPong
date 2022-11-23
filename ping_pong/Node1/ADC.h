@@ -13,5 +13,4 @@ void ADC_Write ();
 int ADC_Read ();
 void ADC_Init();
 
-
 #endif /* ADC_H_ */

@@ -14,5 +14,4 @@ void adc_init(void);
 uint32_t adc_read();
 int score();
 
-
 #endif /* ir_H_ */

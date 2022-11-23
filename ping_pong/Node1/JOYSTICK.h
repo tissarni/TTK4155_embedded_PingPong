@@ -26,6 +26,5 @@ joystick_pos joystick_calibrate();
 joystick_dir get_joystick_dir();
 joystick_pos get_joystick_pos();
 int joystick_button();
-//void send_joystick_pos(can_message* to_send);
 
 #endif /* JOYSTICK_H_ */
