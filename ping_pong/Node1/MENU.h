@@ -18,5 +18,4 @@ typedef struct
 
 void MENU_run(menu *current_menu);
 
-
 #endif /* MENU_H_ */

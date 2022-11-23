@@ -24,14 +24,9 @@ typedef struct uart_ringbuffer_t
 	char data[UART_RINGBUFFER_SIZE];
 	} uart_ringbuffer;
 
-
 void configure_uart(void);
-
 int uart_getchar(uint8_t *c);
 int uart_putchar(const uint8_t c);
-
 void UART_Handler       ( void );
-
-
 
 #endif /* UART_H_ */
